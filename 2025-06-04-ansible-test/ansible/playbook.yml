@@ -1,0 +1,35 @@
+---
+- name: Basic setup for test nodes
+  hosts: nodes
+  become: yes
+  tasks:
+    - name: Ensure some packages are installed
+      apt:
+        name:
+          - curl
+          - git
+          - inetutils-ping
+          - htop
+        state: present
+        update_cache: yes
+
+    - name: Create a demo file
+      copy:
+        dest: /home/user/hello_from_ansible.txt
+        content: "This file was created by Ansible\n"
+        owner: user
+        mode: '0644'
+
+    - name: Copia i file con data corrente
+      copy:
+        dest: ~/file_creato.txt
+        content: "File creato il 23 Giugno 2025"
+
+    - name: Garantisce che htop sia installato
+      apt:
+        name: htop
+        state: present
+      become: true
+
+    - name: Lista contenuto home (comando atteso ok)
+      command: ls -la ~

@@ -1,0 +1,52 @@
+services:
+  ansible:
+    build: ./ansible
+    container_name: ansible
+    hostname: ansible
+    networks:
+      - ansible-net
+    volumes:
+      - sshkey_share:/ssh
+      - ./ansible:/home/project
+    depends_on:
+      - node1
+      - node2
+      - node3
+    tty: true
+
+  node1:
+    build: ./node
+    container_name: node1
+    hostname: node1
+    networks:
+      - ansible-net
+    volumes:
+      - sshkey_share:/ssh
+    tty: true
+
+  node2:
+    build: ./node
+    container_name: node2
+    hostname: node2
+    networks:
+      - ansible-net
+    volumes:
+      - sshkey_share:/ssh
+    tty: true
+
+  node3:
+    build: ./node
+    container_name: node3
+    hostname: node3
+    networks:
+      - ansible-net
+    volumes:
+      - sshkey_share:/ssh
+    tty: true
+
+networks:
+  ansible-net:
+
+volumes:
+  sshkey_share:
+    driver: local
