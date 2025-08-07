@@ -1,5 +1,0 @@
-      1 acqua
-      1 banane
-      1 cioccolata
-      1 latte
-      1 mele

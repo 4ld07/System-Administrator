@@ -1,5 +1,0 @@
-Categorie: 1
-
-1 output/notes/spesa.txt
-
-prova
